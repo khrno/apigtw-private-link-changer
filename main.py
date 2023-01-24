@@ -39,20 +39,20 @@ for page in iterator:
                     
                     if integration['connectionType'] == 'VPC_LINK' and integration['connectionId'] != args.connId:
                         total += 1
-                        print(integration['connectionType'],integration['connectionId'])
-                        print("Fixing,",item['path'],integration['connectionId'],integration['type'],verb)
-                        apigateway.update_integration(
-                            restApiId = args.apiId,
-                            resourceId = item['id'],
-                            httpMethod = verb,
-                            patchOperations = [
-                                {
-                                    'op': 'replace',
-                                    'path': '/connectionId',
-                                    'value': args.connId
-                                } 
-                            ]
-                        )
+                        print("Fixing:",item['path'])
+                        if not args.debug:
+                            apigateway.update_integration(
+                                restApiId = args.apiId,
+                                resourceId = item['id'],
+                                httpMethod = verb,
+                                patchOperations = [
+                                    {
+                                        'op': 'replace',
+                                        'path': '/connectionId',
+                                        'value': args.connId
+                                    } 
+                                ]
+                            )
 
         except KeyError:
             if args.debug:
