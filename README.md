@@ -5,7 +5,7 @@
 ```
 docker build -t apigtw-changer .
 
-docker run  -v ~/.aws:/root/.aws -it apigtw-changer --profile Mifel --apiId <API_ID> --connId <CONN_ID>
+docker run  -v ~/.aws:/root/.aws -it apigtw-changer --profile <PROFILE> --apiId <API_ID> --connId <CONN_ID>
 ```
 
 ### Parameters
